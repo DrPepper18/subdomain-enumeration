@@ -2,8 +2,7 @@
 
 CLI-утилита для пассивного поиска поддоменов с резолвингом текущих IP-адресов.
 Проект реализован в стиле Clean Architecture: доменная модель и бизнес-логика
-отделены от вывода и сетевых адаптеров, а точка входа запускает CLI без
-зависимости от Docker Compose.
+отделены от вывода и сетевых адаптеров.
 
 ## Возможности
 
@@ -18,9 +17,6 @@ CLI-утилита для пассивного поиска поддоменов
 - Устойчивость к падению отдельных источников: один сбой не прерывает весь поиск.
 
 ## Архитектура проекта
-
-Текущая структура проекта уже соответствует новой архитектуре и не зависит от
-`docker-compose`:
 
 ```text
 .
@@ -73,19 +69,9 @@ python -m subdomain_enum.main example.com --sources crtsh hackertarget -o result
 
 ### Через Docker
 
-Docker Compose больше не используется. Приложение собирается и запускается
-через `Dockerfile` напрямую:
-
 ```bash
 docker build -t subdomain-enum .
 docker run --rm subdomain-enum example.com --json
-```
-
-Если нужно сохранить результат на хост, примонтируйте каталог:
-
-```bash
-mkdir -p .\output
-docker run --rm -v .\output:/data subdomain-enum example.com --json -o /data/result.json
 ```
 
 ## Примеры вывода
