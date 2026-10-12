@@ -21,10 +21,11 @@ dev = [
 ]
 
 [project.scripts]
-subdomain-enum = "main:main"
+subdomain-enum = "subdomain_enum.main:main"
 
 [tool.setuptools]
-package-dir = {"" = "src"}
+package-dir = {"" = "src", "subdomain_enum" = "src"}
+packages = ["subdomain_enum"]
 py-modules = ["interface", "main", "models", "services"]
 
 [tool.ruff]
